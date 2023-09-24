@@ -1,20 +1,45 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { registerRootComponent } from 'expo';
+import React, { useState } from 'react';
+import { View, Image, Button, StyleSheet } from 'react-native';
 
-export default function App() {
+const TogglePicturesApp = () => {
+  const [showFirstImage, setShowFirstImage] = useState(true);
+
+  const toggleImage = () => {
+    setShowFirstImage(!showFirstImage);
+  };
+
+
+
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+     <Image
+        source={
+          showFirstImage
+            ? { uri: 'https://cdn.imgbin.com/9/1/3/imgbin-flashlight-n1GuuWEcGdL324nHrTmB3mTuy.jpg'}
+            : { uri: 'https://cdn.xxl.thumbs.canstockphoto.com/flashlight-doodle-illustration-of-a-flashlight-eps-vectors_csp28590938.jpg'}
+        }
+        style={styles.image}
+      />
+      <Button title="Toggle Image" onPress={toggleImage} />
+      
     </View>
   );
-}
+};
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
     justifyContent: 'center',
+    alignItems: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
   },
 });
+
+export default TogglePicturesApp;
